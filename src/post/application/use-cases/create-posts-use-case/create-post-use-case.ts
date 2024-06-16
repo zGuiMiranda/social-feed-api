@@ -12,6 +12,6 @@ export class CreatePostUseCase implements IUseCase {
   }
   async run(req: { data: Post }) {
     const response = await this.postRepository.create(req?.data);
-    return response;
+    return { ...response?.dataValues, ...req.data };
   }
 }

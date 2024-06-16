@@ -12,7 +12,10 @@ export abstract class AbstractRepository {
     return this.model.create(data);
   };
   findAllWithFilters = async (options) => {
-    return this.model.findAll(options);
+    return this.model.findAll({
+      ...options,
+      order: [["createdAt", "DESC"]],
+    });
   };
 
   countAllRows = async (options) => {
